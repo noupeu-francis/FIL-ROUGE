@@ -3,7 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Accueil');
+});
+Route::get('/devis', function () {
+    return view('devis');
+});
+Route::get('/service', function () {
+    return view('service');
+});
+Route::get('/produit', function () {
+    return view('produit');
 });
 
 use App\Http\Controllers\Auth\LoginController;
