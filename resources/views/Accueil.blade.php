@@ -61,11 +61,11 @@
                 
                 <div class="hidden lg:flex items-center space-x-2" id="navbar-menu">
                     <ul class="flex space-x-6">
-                        <li><a href="#accueil" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Accueil</a></li>
-                        <li><a href="#services" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Services</a></li>
-                        <li><a href="#produits" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Produits</a></li>
-                        <li><a href="#about" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">À propos</a></li>
-                        <li><a href="#contact" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
+                        <li><a href="{{ route('accueil') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Accueil</a></li>
+                        <li><a href="{{ route('services') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Services</a></li>
+                        <li><a href="{{ route('produits') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Produits</a></li>
+                        <li><a href="{{ route('about') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">À propos</a></li>
+                        <li><a href="{{ route('contact') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
                     </ul>
                     <div class="flex ml-6 space-x-3">
                         <a href="{{ route('login') }}" class="btn-connexion bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105">Connexion</a>
@@ -77,11 +77,11 @@
             <!-- Mobile menu -->
             <div class="lg:hidden hidden bg-dark py-4" id="mobile-menu">
                 <ul class="flex flex-col space-y-4">
-                    <li><a href="#accueil" class="block text-white hover:text-primary transition-colors duration-300">Accueil</a></li>
-                    <li><a href="#services" class="block text-white hover:text-primary transition-colors duration-300">Services</a></li>
-                    <li><a href="#produits" class="block text-white hover:text-primary transition-colors duration-300">Produits</a></li>
-                    <li><a href="#about" class="block text-white hover:text-primary transition-colors duration-300">À propos</a></li>
-                    <li><a href="#contact" class="block text-white hover:text-primary transition-colors duration-300">Contact</a></li>
+                    <li><a href="{{ route('accueil') }}" class="block text-white hover:text-primary transition-colors duration-300">Accueil</a></li>
+                    <li><a href="{{ route('services') }}" class="block text-white hover:text-primary transition-colors duration-300">Services</a></li>
+                    <li><a href="{{ route('produits') }}" class="block text-white hover:text-primary transition-colors duration-300">Produits</a></li>
+                    <li><a href="{{ route('about') }}" class="block text-white hover:text-primary transition-colors duration-300">À propos</a></li>
+                    <li><a href="{{ route('contact') }}" class="block text-white hover:text-primary transition-colors duration-300">Contact</a></li>
                     <li class="pt-4">
                         <div class="flex space-x-3">
                             <a href="{{ route('login') }}" class="btn-connexion bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all duration-300 w-full text-center">Connexion</a>

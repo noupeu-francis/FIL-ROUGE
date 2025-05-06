@@ -37,11 +37,11 @@
                 
                 <div class="hidden lg:flex items-center space-x-2" id="navbar-menu">
                     <ul class="flex space-x-6">
-                        <li><a href="#accueil" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Accueil</a></li>
-                        <li><a href="#services" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Services</a></li>
-                        <li><a href="#produits" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Produits</a></li>
-                        <li><a href="#about" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">À propos</a></li>
-                        <li><a href="#contact" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
+                        <li><a href="{{ route('accueil') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Accueil</a></li>
+                        <li><a href="{{ route('services') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Services</a></li>
+                        <li><a href="{{ route('produits') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Produits</a></li>
+                        <li><a href="{{ route('about') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">À propos</a></li>
+                        <li><a href="{{ route('contact') }}" class="nav-link text-white hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full">Contact</a></li>
                     </ul>
                     <div class="flex ml-6 space-x-3">
                         <a href="{{ route('login') }}" class="btn-connexion bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105">Connexion</a>
@@ -77,7 +77,7 @@
         </div>
     </header>
 
-    <!-- Catégories Navigation -->
+    <!-- Navigation des catégories -->
     <div class="bg-gray-100 py-6 mb-10 sticky top-16 z-40 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-center gap-2 md:gap-4">
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-
+J
     <!-- Carrelage Sol -->
     <section id="carrelage-sol" class="py-12">
         <div class="container mx-auto px-4">
@@ -100,7 +100,7 @@
                 @for ($i = 1; $i <= 6; $i++)
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                     <div class="relative">
-                        <img src="{{ asset('assets/img/X.PNG') }}"alt="Carrelage Sol {{$i}}" class="w-full h-80 object-cover">
+                        <img src="{{ asset('assets/img/X.JPG') }}"alt="Carrelage Sol {{$i}}" class="w-full h-80 object-cover">
                     </div>
                     <div class="p-6">
                         <h4 class="text-lg font-semibold mb-2">Carrelage Sol {{$i}}</h4>
@@ -142,6 +142,76 @@
                         <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-md transition-colors">
                             Acheter
                         </button>
+                        
+                        <!-- Ajouter le modal à la fin du body, avant les scripts -->
+                        <!-- Modal de commande -->
+                        <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+                            <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h3 class="text-2xl font-bold text-gray-900">Commander</h3>
+                                    <button onclick="closeOrderModal()" class="text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-times text-xl"></i>
+                                    </button>
+                                </div>
+                        
+                                <form action="{{ route('order.submit') }}" method="POST" class="space-y-4">
+                                    @csrf
+                                    <input type="hidden" name="product_id" id="productId">
+                                    
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2">Nom complet</label>
+                                        <input type="text" name="name" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                        
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2">Email</label>
+                                        <input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                        
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2">Téléphone</label>
+                                        <input type="tel" name="phone" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                        
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2">Quantité (m²)</label>
+                                        <input type="number" name="quantity" min="1" value="1" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    </div>
+                        
+                                    <div>
+                                        <label class="block text-gray-700 font-medium mb-2">Adresse de livraison</label>
+                                        <textarea name="address" required class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" rows="3"></textarea>
+                                    </div>
+                        
+                                    <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-semibold py-3 rounded-lg transition-colors duration-300">
+                                        Confirmer la commande
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Ajouter ce script avant la fermeture du body -->
+                        <script>
+                            function openOrderModal(productId) {
+                                document.getElementById('orderModal').classList.remove('hidden');
+                                document.getElementById('orderModal').classList.add('flex');
+                                document.getElementById('productId').value = productId;
+                                document.body.style.overflow = 'hidden';
+                            }
+                        
+                            function closeOrderModal() {
+                                document.getElementById('orderModal').classList.add('hidden');
+                                document.getElementById('orderModal').classList.remove('flex');
+                                document.body.style.overflow = 'auto';
+                            }
+                        
+                            // Fermer le modal si on clique en dehors
+                            document.getElementById('orderModal').addEventListener('click', function(e) {
+                                if (e.target === this) {
+                                    closeOrderModal();
+                                }
+                            });
+                        </script>
                     </div>
                 </div>
                 @endfor
@@ -159,65 +229,65 @@
     </section>
 
     <!-- Carrelage Mural -->
-    <section id="carrelage-mural" class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 relative pb-2">
-                Carrelage Mural
-                <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded-full"></span>
-            </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                @for ($i = 1; $i <= 6; $i++)
-                <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                    <div class="relative">
-                        <img src="/images/mural-{{$i}}.jpg" alt="Carrelage Mural {{$i}}" class="w-full h-80 object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-lg font-semibold mb-2">Carrelage Mural {{$i}}</h4>
-                        <p class="text-primary font-bold text-xl mb-4">39.99€/m²</p>
-                        
-                        <!-- Description déroulante -->
-                        <div class="mb-4">
-                            <p class="text-gray-700 mb-3">Carrelage mural moderne avec finition mate ou brillante. Idéal pour salle de bain et cuisine.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    Design contemporain
-                                </li>
-                                <li class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    Résistant à l'humidité
-                                </li>
-                                <li class="flex items-center">
-                                    <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    Facile à nettoyer
-                                </li>
-                            </ul>
+        <section id="carrelage-mural" class="py-12 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 relative pb-2">
+                    Carrelage Mural
+                    <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary rounded-full"></span>
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    @for ($i = 1; $i <= 6; $i++)
+                    <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="relative">
+                            <img src="{{ asset('assets/img/MO1'.$i.'.JPG') }}" alt="Carrelage Mural {{$i}}" class="w-full h-80 object-cover">
                         </div>
-                        
-                        <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-md transition-colors">
-                            Acheter
-                        </button>
+                        <div class="p-6">
+                            <h4 class="text-lg font-semibold mb-2">Carrelage Mural {{$i}}</h4>
+                            <p class="text-primary font-bold text-xl mb-4">39.99€/m²</p>
+                            
+                            <!-- Description déroulante -->
+                            <div class="mb-4">
+                                <p class="text-gray-700 mb-3">Carrelage mural moderne avec finition mate ou brillante. Idéal pour salle de bain et cuisine.</p>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        Design contemporain
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        Résistant à l'humidité
+                                    </li>
+                                    <li class="flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                        </svg>
+                                        Facile à nettoyer
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <button class="w-full bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-md transition-colors">
+                                Acheter
+                            </button>
+                        </div>
                     </div>
+                    @endfor
                 </div>
-                @endfor
+                <div class="text-center mt-12">
+                    <a href="/categorie/sol" class="inline-flex items-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-colors duration-300">
+                        Voir plus 
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="text-center mt-12">
-                <a href="/categorie/sol" class="inline-flex items-center px-8 py-3 bg-primary hover:bg-primary-dark text-white font-semibold rounded-full transition-colors duration-300">
-                    Voir plus 
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Mosaïque -->
     <section id="mosaique" class="py-12">
@@ -320,7 +390,7 @@
                     <ul class="space-y-3 text-gray-400">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
-                            <span>123 Rue de la Construction, 75000 Paris</span>
+                            <span>123 Rue de la Construction,AKWA</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-phone-alt mt-1 mr-3 text-primary"></i>

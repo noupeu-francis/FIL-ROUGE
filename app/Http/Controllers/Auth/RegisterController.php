@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
+    protected $redirectTo = '/dashboard';
+
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -28,8 +31,8 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        auth()->login($user);
-
-        return redirect('/dashboard');
+        Auth::login($user);
+        
+        return redirect()->intended('/dashboardutilisateur');
     }
 }
