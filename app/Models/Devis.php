@@ -10,6 +10,7 @@ class Devis extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'nom',
         'prenom',
         'email',
@@ -18,4 +19,9 @@ class Devis extends Model
         'description',
         'statut'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

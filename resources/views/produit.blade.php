@@ -100,7 +100,7 @@ J
                 @for ($i = 1; $i <= 6; $i++)
                 <div class="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
                     <div class="relative">
-                        <img src="{{ asset('assets/img/X.JPG') }}"alt="Carrelage Sol {{$i}}" class="w-full h-80 object-cover">
+                        <img src="{{ asset('assets/imgM1.JPG') }}"alt="Carrelage Sol {{$i}}" class="w-full h-80 object-cover">
                     </div>
                     <div class="p-6">
                         <h4 class="text-lg font-semibold mb-2">Carrelage Sol {{$i}}</h4>

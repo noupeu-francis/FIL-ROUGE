@@ -102,8 +102,8 @@
             <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
                 <div class="text-center mb-10">
                 
-                    <a href="{{ route('devis') }}" class="inline-block mt-6 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Demande un devis
+                    <a href="{{ route('register') }}" class="inline-block mt-6 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Demande un dddddevis
                     </a>
                 </div>
             </div>
