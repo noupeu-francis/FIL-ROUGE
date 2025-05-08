@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    protected $redirectTo = '/dashboard';
-
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -19,20 +17,20 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
         ]);
 
         Auth::login($user);
-        
-        return redirect()->intended('/dashboardutilisateur');
+
+        return redirect('/dashboard');
     }
 }

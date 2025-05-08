@@ -100,8 +100,12 @@
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-shadow-md animate-fade-in">Bienvenue chez INCORS</h1>
             <p class="text-xl md:text-2xl text-white mb-8 text-shadow animate-fade-in delay-100">Votre partenaire de confiance pour des constructions durables</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in delay-200">
-                <a href="#contact" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">Contactez-nous</a>
-                <a href="#services" class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">Nos Services</a>
+                <div class="text-center mb-10">
+                
+                    <a href="{{ route('devis') }}" class="inline-block mt-6 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Demande un devis
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -226,7 +230,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark mb-2">Carrelage Premium</h3>
                         <p class="text-secondary mb-4">Large choix de carrelages intérieurs et extérieurs</p>
-                        <a href="#" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
+                        <a href="{{ route('produits') }}" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
                             Voir options <i class="fas fa-chevron-right ml-2"></i>
                         </a>
                     </div>
@@ -240,7 +244,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark mb-2">Parquet Massif</h3>
                         <p class="text-secondary mb-4">Essences nobles et traitements durables</p>
-                        <a href="#" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
+                        <a href="{{ route('produits') }}" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
                             Voir options <i class="fas fa-chevron-right ml-2"></i>
                         </a>
                     </div>
@@ -254,7 +258,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark mb-2">Peintures Écologiques</h3>
                         <p class="text-secondary mb-4">Gamme de peintures sans COV pour un intérieur sain</p>
-                        <a href="#" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
+                        <a href="{{ route('produits') }}" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
                             Voir options <i class="fas fa-chevron-right ml-2"></i>
                         </a>
                     </div>
@@ -268,7 +272,7 @@
                     <div class="p-6">
                         <h3 class="text-xl font-bold text-dark mb-2">Sanitaires Design</h3>
                         <p class="text-secondary mb-4">Salles de bain modernes et fonctionnelles</p>
-                        <a href="#" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
+                        <a href="{{ route('produits') }}" class="text-primary font-medium hover:text-blue-700 transition-colors duration-300 inline-flex items-center">
                             Voir options <i class="fas fa-chevron-right ml-2"></i>
                         </a>
                     </div>
@@ -276,7 +280,7 @@
             </div>
             
             <div class="text-center mt-12">
-                <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <a href="{{ route('produits') }}" class="inline-block bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Voir tous nos produits
                 </a>
             </div>
@@ -567,11 +571,11 @@
                     <ul class="space-y-3 text-gray-400">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
-                            <span>123 Rue de la Construction, 75000 Paris</span>
+                            <span>123 Rue de la Construction</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-phone-alt mt-1 mr-3 text-primary"></i>
-                            <span>+33 1 23 45 67 89</span>
+                            <span>+237 680772676</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-envelope mt-1 mr-3 text-primary"></i>

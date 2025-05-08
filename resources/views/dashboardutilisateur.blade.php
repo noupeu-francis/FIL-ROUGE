@@ -100,10 +100,13 @@
               </ul>
             </nav>
             <div class="p-4 border-t border-gray-200">
-              <a href="#" class="sidebar-item text-red-600 hover:bg-red-50">
-                <i class="fas fa-sign-out-alt mr-3"></i>
-                <span>Déconnexion</span>
-              </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="sidebar-item text-red-600 hover:bg-red-50 w-full text-left">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        <span>Déconnexion</span>
+                    </button>
+                </form>
             </div>
           </aside>
   

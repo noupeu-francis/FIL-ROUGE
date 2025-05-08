@@ -78,20 +78,24 @@
                 <div class="text-center mb-10">
                     <h2 class="text-2xl font-semibold text-primary">Vous souhaitez un devis personnalisé ?</h2>
                     <p class="text-gray-600 mt-2">Remplissez ce formulaire et nous vous répondrons dans les plus brefs délais</p>
+                    <a href="#devis-form" class="inline-block mt-6 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Demande un devis
+                    </a>
                 </div>
 
-                <form class="space-y-6">
+                <form id="devis-form" class="space-y-6" action="{{ route('devis.store') }}" method="POST">
+                    @csrf
                     <!-- Row 1 -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                            <input type="email" id="email" required 
+                            <input type="email" id="email" name="email" required 
                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                    placeholder="votre@email.com">
                         </div>
                         <div>
                             <label for="nom" class="block text-sm font-medium text-gray-700 mb-1">Nom *</label>
-                            <input type="text" id="nom" required 
+                            <input type="text" id="nom" name="nom" required 
                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                    placeholder="Votre nom">
                         </div>
@@ -101,13 +105,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="prenom" class="block text-sm font-medium text-gray-700 mb-1">Prénom *</label>
-                            <input type="text" id="prenom" required 
+                            <input type="text" id="prenom" name="prenom" required 
                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                    placeholder="Votre prénom">
                         </div>
                         <div>
                             <label for="profession" class="block text-sm font-medium text-gray-700 mb-1">Profession</label>
-                            <input type="text" id="profession" 
+                            <input type="text" id="profession" name="profession" 
                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                    placeholder="Votre profession">
                         </div>
@@ -116,7 +120,7 @@
                     <!-- Row 3 -->
                     <div>
                         <label for="telephone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone *</label>
-                        <input type="tel" id="telephone" required 
+                        <input type="tel" id="telephone" name="telephone" required 
                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                placeholder="Votre numéro de téléphone">
                     </div>
@@ -124,7 +128,7 @@
                     <!-- Message -->
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message *</label>
-                        <textarea id="message" rows="4" required 
+                        <textarea id="message" name="message" rows="4" required 
                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-accent focus:border-transparent transition-all" 
                                   placeholder="Décrivez votre projet ou demande..."></textarea>
                     </div>
