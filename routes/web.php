@@ -27,6 +27,14 @@ Route::get('/contact', function () {
 Route::get('/devis', [App\Http\Controllers\DevisController::class, 'index'])->name('devis');
 
 Route::post('/devis', [App\Http\Controllers\DevisController::class, 'store'])->name('devis.store');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/devis', [App\Http\Controllers\Admin\DevisController::class, 'index'])->name('admin.devis.index');
+    Route::middleware('auth')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+});
 
 Route::post('/contact/submit', function (Request $request) {
     // Logique de traitement du formulaire

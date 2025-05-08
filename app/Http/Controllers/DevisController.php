@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;  // Remove the "Auth" from namespace
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Devis;
 
 class DevisController extends Controller
 {
@@ -14,19 +14,17 @@ class DevisController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $validatedData = $request->validate([
+            'nom' => 'required',
+            'prenom' => 'required',
             'email' => 'required|email',
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'profession' => 'nullable|string|max:255',
-            'telephone' => 'required|string|max:20',
-            'message' => 'required|string',
-            'type' => 'required|in:particulier,entreprise',
-            'confirmation' => 'required|accepted'
+            'telephone' => 'required',
+            'type_projet' => 'required',
+            'description' => 'required'
         ]);
 
-        // Add your logic to store the devis here
-        
-        return redirect()->back()->with('success', 'Votre demande de devis a été envoyée avec succès.');
+        Devis::create($validatedData);
+
+        return redirect()->back()->with('success', 'Votre demande de devis a été envoyée avec succès !');
     }
 }

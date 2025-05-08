@@ -8,17 +8,16 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if (!Schema::hasTable('administrateurs')) {
-            Schema::create('administrateurs', function (Blueprint $table) {
+        if (!Schema::hasTable('devis')) {
+            Schema::create('devis', function (Blueprint $table) {
                 $table->id();
                 $table->string('nom');
                 $table->string('prenom');
-                $table->string('email')->unique();
+                $table->string('email');
                 $table->string('telephone');
-                $table->foreignId('user_id')
-                      ->nullable()
-                      ->constrained()
-                      ->onDelete('set null');
+                $table->string('type_projet');
+                $table->text('description');
+                $table->string('statut')->default('en_attente');
                 $table->timestamps();
             });
         }
@@ -26,6 +25,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('administrateurs');
+        Schema::dropIfExists('devis');
     }
 };
